@@ -1,19 +1,56 @@
-export default async function before(m, { conn , bot }) {
-  const triggers = {
-    "السلام عليكم": ["*وعليكم السلام منور يغالي 🤎*", "*وعليكم السلام ورحمة الله وبركاته ❤️*"],
-    "تست": ["تست", "تست تست"],
-    "هلا": ["*هلا وغلا*", "*هلا بيك*", "*يا هلا*"],
-    "باي": ["*مع السلامة*", "*باي باي*", "*الله معاك*"],
-    "صباح الخير": ["*صباح النور*", "*صباح الورد*", "*صباح الفل*"],
-    "مساء الخير": ["*مساء النور*", "*مساء الورد*", "*مساء الفل*", "*مساء الجوري*"],
-    "مساء النور": ["*مساء الورد*", "*مساء الفل*", "*الله نورك*"]
-  };
 
-  const replies = triggers[m.text];
-  if (replies) {
-    const ranReply = replies[Math.floor(Math.random() * replies.length)];
-    m.reply(ranReply);
+export default async function before(m, { conn, bot }) {
+  let responses;
+
+  if (/^هلا$/i.test(m.text)) {
+    responses = [
+      '*هلا بيك*'
+    ];
+
+  } else if (/^(السلام عليكم|سلام عليكم|السلام عليكم ورحمه الله وبركاته|سلام عليكم ورحمه الله وبركاته)$/i.test(m.text)) {
+    responses = [
+      '*وعليكم السلام*'
+    ];
+
+  } else if (/^حمامه$/i.test(m.text)) {
+    responses = [
+      '*ماتزعجش دادي كلمني انا*'
+    ];
+
+  } else if (/^شاطر$/i.test(m.text)) {
+    responses = [
+      '*اوديك القناطر*'
+    ];
+
+  } else if (/^تصبحي علي خير$/i.test(m.text)) {
+    responses = [
+      '*وانت من اهل الخير*',
+      '*وانت من اهلي يا عيوني✨🤍*'
+    ];
+
+  } else if (/^آي من عمك|آي عمك$/i.test(m.text)) {
+    responses = [
+      '*احمد حبيبي*'
+    ];
+
+  } else if (/^هاي|هالو$/i.test(m.text)) {
+    responses = [
+      '*هالو🌚♥*'
+    ];
+
+  } else if (/^بحبك/i.test(m.text)) {
+    responses = [
+      '*بحبك اكتر🌚❤*',
+      '*بتكثف*',
+      '*هممم*',
+      '*مش بفكر في الحب*'
+    ];
   }
-  
+
+  if (responses) {
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    m.reply(responses[randomIndex]);
+  }
+
   return false;
 }
